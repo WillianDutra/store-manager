@@ -1,11 +1,6 @@
-const { salesModel, productsModel, salesProductsModel } = require('../models');
+const { salesModel, salesProductsModel } = require('../models');
 const { validateQuantity } = require('./validations/validateQuantityValue');
-
-const productExist = async (saleId) => {
-  const sale = await productsModel.getById(saleId);
-  if (sale) return true;
-  return false;
-};
+const productExist = require('../utils/productExist');
 
 const getAll = async () => {
   const sales = await salesModel.getAll();
