@@ -23,7 +23,7 @@ const insertProduct = async (productName) => {
 };
 
 const updateProduct = async ({ productId, productName }) => {
-    const error = validateProduct(productName);
+  const error = validateProduct(productName);
   if (error.type) return error;
 
   const exist = await productExist(productId);

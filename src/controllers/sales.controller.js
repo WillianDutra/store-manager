@@ -20,7 +20,7 @@ const createSale = async (req, res) => {
   const sales = req.body;
   const { type, message } = await salesService.insertNewSale(sales);
   if (type) return res.status(errorCode(type)).json({ message });
-  
+
   return res.status(201).json(message);
 };
 

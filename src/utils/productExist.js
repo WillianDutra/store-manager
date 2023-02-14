@@ -1,9 +1,9 @@
 const { productsModel } = require('../models');
 
-const productExist = async (saleId) => {
-  const sale = await productsModel.getById(saleId);
-  if (sale) return true;
-  return false;
+const getProductsId = async () => {
+  const products = await productsModel.getAll();
+  const productsIds = products.map((product) => product.id);
+  return productsIds;
 };
 
-module.exports = productExist;
+module.exports = getProductsId;

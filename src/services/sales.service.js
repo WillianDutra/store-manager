@@ -1,5 +1,4 @@
 const { salesModel, salesProductsModel } = require('../models');
-const { validateQuantity } = require('./validations/validateQuantityValue');
 const productExist = require('../utils/productExist');
 
 const getAll = async () => {
@@ -15,15 +14,9 @@ const getById = async (saleId) => {
 };
 
 const insertNewSale = async (salesProducts) => {
-  const [validateError] = salesProducts.map(async (sale) => {
-    const error = validateQuantity(sale.quantity);
-    if (error.type) return error;
-
-    const exist = await productExist(sale.productId);
-    if (!exist) return { type: 'NOT_FOUND', message: 'Product not found' };
-  });
-
-  if (validateError) return validateError;
+  const salesIds = await productExist();
+  const validateError = salesProducts.every(({ productId }) => salesIds.includes(productId));
+  if (!validateError) return { type: 'NOT_FOUND', message: 'Product not found' };
 
   const saleId = await salesModel.insertNewSale();
   await salesProducts.map(async ({ quantity, productId }) => {
