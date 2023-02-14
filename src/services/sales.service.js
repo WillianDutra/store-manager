@@ -1,5 +1,5 @@
 const { salesModel, salesProductsModel } = require('../models');
-const productExist = require('../utils/productExist');
+const getProductsId = require('../utils/productExist');
 
 const getAll = async () => {
   const sales = await salesModel.getAll();
@@ -14,7 +14,7 @@ const getById = async (saleId) => {
 };
 
 const insertNewSale = async (salesProducts) => {
-  const salesIds = await productExist();
+  const salesIds = await getProductsId();
   const validateError = salesProducts.every(({ productId }) => salesIds.includes(productId));
   if (!validateError) return { type: 'NOT_FOUND', message: 'Product not found' };
 
