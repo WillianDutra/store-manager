@@ -17,7 +17,6 @@ const getProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  console.log(req.body);
   const { name } = req.body;
   const { type, message } = await productsService.insertProduct(name);
   if (type) return res.status(errorCode(type)).json({ message });
