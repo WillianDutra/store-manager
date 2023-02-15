@@ -35,9 +35,19 @@ const updateProduct = async ({ productId, productName }) => {
   return { type: null, message: product };
 };
 
+const removeProduct = async (productId) => {
+  const productsIds = await getProductsId();
+  const validate = productsIds.includes(Number(productId));
+  if (!validate) return { type: 'NOT_FOUND', message: 'Product not found' };
+
+  await productsModel.removeProduct(productId);
+  return { type: null, message: '' };
+}; 
+
 module.exports = {
   getAll,
   getById,
   updateProduct,
   insertProduct,
+  removeProduct,
 };
