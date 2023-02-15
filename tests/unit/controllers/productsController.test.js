@@ -11,7 +11,7 @@ const { productsController } = require('../../../src/controllers');
 const { allProducts, filteredProduct } = require('./mocks/products.controller.mock');
 
 describe('Testes unitarios da controller de produtos', function () {
-  it('Retorna o status 200 e a lista', async function () {
+  it('Retorna o status 200 e a lista de produtos', async function () {
     const res = {};
     const req = {};
 
