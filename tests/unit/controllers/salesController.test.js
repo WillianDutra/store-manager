@@ -54,7 +54,7 @@ describe('Testes unitarios da camada controller de sales', function () {
       await salesController.getSale(req, res);
 
       expect(res.status).to.have.been.calledWith(404);
-      expect(res.json).to.have.been.calledWith({message: SALE_MESSAGE});
+      expect(res.json).to.have.been.calledWith({ message: SALE_MESSAGE });
     });
   });
 

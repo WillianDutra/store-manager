@@ -1,5 +1,13 @@
 const connection = require('./connection');
 
+const getSalesIds = async () => {
+  const [result] = await connection.execute(
+    'SELECT id FROM StoreManager.sales',
+  );
+
+  return result;
+};
+
 const getAll = async () => {
   const [result] = await connection.execute(
     `SELECT sa.id AS saleId, sa.date, sp.product_id AS productId, sp.quantity
@@ -32,8 +40,17 @@ const insertNewSale = async () => {
   return insertId;
 };
 
+const deleteSale = async (saleId) => {
+  await connection.execute(
+    'DELETE FROM StoreManager.sales WHERE id = ?',
+    [saleId],
+  );
+};
+
 module.exports = {
+  getSalesIds,
   getAll,
   getById,
   insertNewSale,
+  deleteSale,
 };
