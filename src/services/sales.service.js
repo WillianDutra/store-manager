@@ -28,7 +28,6 @@ const insertNewSale = async (salesProducts) => {
 
 const deleteSale = async (saleId) => {
   const salesIds = await salesModel.getSalesIds();
-  console.log(salesIds);
   const validate = salesIds.some((sale) => sale.id === Number(saleId));
   if (!validate) return { type: 'NOT_FOUND', message: 'Sale not found' };
 
