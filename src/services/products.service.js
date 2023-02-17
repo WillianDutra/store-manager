@@ -14,6 +14,13 @@ const getById = async (productId) => {
   return { type: 'NOT_FOUND', message: 'Product not found' };
 };
 
+const getByName = async (productName) => {
+  const product = await productsModel.getByName(productName);
+  if (product) return { type: null, message: product };
+
+  return { type: 'NOT_FOUND', message: 'Product not found' };
+};
+
 const insertProduct = async (productName) => {
   const error = validateProduct(productName);
   if (error.type) return error;
@@ -48,6 +55,7 @@ const removeProduct = async (productId) => {
 module.exports = {
   getAll,
   getById,
+  getByName,
   updateProduct,
   insertProduct,
   removeProduct,
