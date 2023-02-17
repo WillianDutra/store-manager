@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/', salesController.listSales);
 router.post('/', validateNewSale, salesController.createSale);
 router.get('/:id', salesController.getSale);
+router.put('/:id', validateNewSale, salesController.updateSaleProduct);
 router.delete('/:id', salesController.deleteSale);
 
 module.exports = router;

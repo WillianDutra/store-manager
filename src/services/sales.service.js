@@ -26,6 +26,22 @@ const insertNewSale = async (salesProducts) => {
   return { type: null, message: { id: saleId, itemsSold: salesProducts } };
 };
 
+const updateSaleProduct = async (saleId, updateData) => {
+  const salesIds = await salesModel.getSalesIds();
+  const validate = salesIds.some((sale) => sale.id === Number(saleId));
+  if (!validate) return { type: 'NOT_FOUND', message: 'Sale not found' };
+
+  const productsIds = await getProductsId();
+  const validateError = updateData.every(({ productId }) => productsIds.includes(productId));
+  if (!validateError) return { type: 'NOT_FOUND', message: 'Product not found' };
+
+  await updateData.map(async ({ quantity, productId }) => {
+    await salesProductsModel.updateSaleProduct({ saleId, productId, quantity });
+  });
+
+  return { type: null, message: { saleId, itemsUpdated: updateData } };
+};
+
 const deleteSale = async (saleId) => {
   const salesIds = await salesModel.getSalesIds();
   const validate = salesIds.some((sale) => sale.id === Number(saleId));
@@ -39,5 +55,6 @@ module.exports = {
   getAll,
   getById,
   insertNewSale,
+  updateSaleProduct,
   deleteSale,
 };
