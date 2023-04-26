@@ -33,4 +33,4 @@ Caso queira instalar o projeto e dar uma olhada mais de perto.
   npm run dev
 ```
 
-Após a configuração e só fazer as requisições.
+Após a configuração é só fazer as requisições.
