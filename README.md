@@ -21,7 +21,7 @@ Caso queira instalar o projeto e dar uma olhada mais de perto.
   # Clonando o projeto
   git clone git@github.com:WillianDutra/store-manager.git
   # Entrando na pasta
-  cd trybers-and-dragons
+  cd store-manager
   # Iniciando o docker
   docker-compose up -d
   # Entrando no container docker
